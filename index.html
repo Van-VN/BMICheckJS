@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .inline-text {
+            display: inline-block;
+        }
+
+        input {
+        margin: 10px 10px 10px 0;
+        }
+
+        button {
+            width: 500px;
+        }
+
+        #bmiAlert {
+            font-size: 26px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<input type="number" min="0" id="weight">
+<label for="weight">Nhập chỉ số cân nặng theo KG</label>
+<br>
+<input type="number" min="0" id="height">
+<label for="height">Nhập chỉ số chiều cao theo M</label>
+<br>
+<button onclick="bmiCheck()">Kiểm tra chỉ số BMI</button>
+<br>
+<p class="inline-text">Chỉ số BMI của bạn là: </p>
+<p id="bmiResult" class="inline-text">
+<p id="bmiAlert"></p>
+</body>
+</html>
+
+<script>
+
+    function bmiCheck() {
+
+        let weightInt = +document.getElementById("weight").value;
+        let heightInt = +document.getElementById("height").value;
+        let bmiCount;
+        if (heightInt > 2.5) {
+            alert("Dữ liệu chiều cao không chính xác")
+        } else {
+            bmiCount = weightInt / (heightInt ** 2);
+            console.log(bmiCount);
+            document.getElementById("bmiResult").innerHTML = bmiCount;
+            if (bmiCount < 18.5) {
+                document.getElementById("bmiAlert").innerHTML = "Quá gầy";
+            } else if (bmiCount >= 18.8 && bmiCount < 25) {
+                document.getElementById("bmiAlert").innerHTML = "Bình thường";
+            } else if (bmiCount >= 25 && bmiCount < 30) {
+                document.getElementById("bmiAlert").innerHTML = "Thừa cân";
+            } else if (bmiCount >= 30) {
+                document.getElementById("bmiAlert").innerHTML = "Béo phì";
+            }
+        }
+
+    }
+</script>
